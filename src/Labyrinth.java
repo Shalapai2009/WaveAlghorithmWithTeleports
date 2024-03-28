@@ -125,6 +125,7 @@ public class Labyrinth {
         else {
             Deque<Cell> deque = new ArrayDeque<>();
             deque.add(finish);
+            finish.doShade();
             while (deque.getLast() != start){
                 Cell currentCell = deque.getLast();
                 int[] currentCellCoordinates = getCellCoordinates(currentCell);
@@ -138,15 +139,15 @@ public class Labyrinth {
                     deque.add(leftCell);
                     leftCell.doShade();
                 }
-                if (UpCell != null && (UpCell.getPosition() == currentCell.getPosition()-1)){
+                else if (UpCell != null && (UpCell.getPosition() == currentCell.getPosition()-1)){
                     deque.add(UpCell);
                     UpCell.doShade();
                 }
-                if (RightCell != null && (RightCell.getPosition() == currentCell.getPosition()-1)){
+               else if (RightCell != null && (RightCell.getPosition() == currentCell.getPosition()-1)){
                     deque.add(RightCell);
                     RightCell.doShade();
                 }
-                if (DownCell != null && (DownCell.getPosition() == currentCell.getPosition()-1)){
+                else if (DownCell != null && (DownCell.getPosition() == currentCell.getPosition()-1)){
                     deque.add(DownCell);
                     DownCell.doShade();
                 }

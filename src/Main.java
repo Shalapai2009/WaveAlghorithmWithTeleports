@@ -16,6 +16,7 @@ public class Main {
         labyrinth.getCell(3,3).doCellFull();
         labyrinth.getCell(5,5).doCellFull();
         labyrinth.getCell(6,7).doCellFull();
+        labyrinth.getCell(6,6).doCellFull();
         labyrinth.getShortestWay();
 
         printColor(labyrinth.getLabyrinth());
