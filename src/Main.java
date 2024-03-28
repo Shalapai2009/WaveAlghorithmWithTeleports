@@ -12,23 +12,25 @@ public class Main {
         }
         Labyrinth labyrinth = new Labyrinth(Labyrinth9X9);
         labyrinth.setStart(1,1);
-        labyrinth.setFinish(8,8);
-        printThis(labyrinth.getLabyrinth());
-
+        labyrinth.setFinish(7,7);
+        labyrinth.getCell(3,3).doCellFull();
+        labyrinth.getCell(5,5).doCellFull();
+        labyrinth.getShortestWay();
         System.out.println("Hello world!");
+        printThis(labyrinth.getLabyrinth());
     }
 
     public static void printThis(Cell[][] laburinth){
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (j == 8){
-                    System.out.print(laburinth[i][j].getPosition());
+                    System.out.print(laburinth[i][j].getPosition()+" ");
                     System.out.println();
                 } else
                     if (laburinth[i][j].getPosition() == -1){
                     System.out.print(laburinth[i][j].getPosition());}
                     else {
-                        System.out.print(" "+laburinth[i][j].getPosition());
+                        System.out.print(" "+laburinth[i][j].getPosition()+" ");
                     }
             }
         }

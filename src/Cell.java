@@ -2,9 +2,11 @@ public class Cell {
 
     private int position = 0;
     private Type type;
-    private Attendance attendance;
+    private Attendance attendance = Attendance.UNVISITED;
+    private Paint color = Paint.NOTSHADED;
+
     public Cell(int position,Type type){
-    this.position= position;
+    this.position = position;
     this.type = type;
     }
     public int getPosition(){
@@ -32,14 +34,23 @@ public class Cell {
     public void doStart(){
         position = 0;
         type = Type.START;
+        attendance = Attendance.VISITED;
     }
     public void doFinish(){
         type = Type.FINISH;
+    }
+
+    public void doShade(){ color = Paint.SHADED;}
+    public Paint getColor(){
+        return color;
     }
     public void doCellTeleport(){
         type = Type.TELEPORT;
     }
 
+    public Attendance getAttendance(){
+        return attendance;
+    }
     public void makeVisited(){
         attendance = Attendance.VISITED;
     }
@@ -51,6 +62,9 @@ public class Cell {
     }
     public static enum Attendance{
         VISITED, UNVISITED
+    }
+    public static enum Paint{
+        NOTSHADED,SHADED
     }
 
 }
