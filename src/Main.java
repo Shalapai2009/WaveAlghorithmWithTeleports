@@ -15,7 +15,10 @@ public class Main {
         labyrinth.setFinish(7,7);
         labyrinth.getCell(3,3).doCellFull();
         labyrinth.getCell(5,5).doCellFull();
+        labyrinth.getCell(6,7).doCellFull();
         labyrinth.getShortestWay();
+
+        printColor(labyrinth.getLabyrinth());
         System.out.println("Hello world!");
         printThis(labyrinth.getLabyrinth());
     }
@@ -32,6 +35,22 @@ public class Main {
                     else {
                         System.out.print(" "+laburinth[i][j].getPosition()+" ");
                     }
+            }
+        }
+    }
+    public static void printColor(Cell[][] laburinth){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (j == 8){
+                   if  (laburinth[i][j].getColor() == Cell.Paint.NOTSHADED){
+                        System.out.print("N"+" ");
+                    } else {System.out.print("S"+" ");}
+                    System.out.println();
+                } else{
+                    if  (laburinth[i][j].getColor() == Cell.Paint.NOTSHADED){
+                        System.out.print("N"+" ");
+                    } else {System.out.print("S"+" ");}
+                }
             }
         }
     }

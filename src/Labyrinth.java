@@ -125,8 +125,8 @@ public class Labyrinth {
         else {
             Deque<Cell> deque = new ArrayDeque<>();
             deque.add(finish);
-            Cell currentCell = deque.getLast();
             while (deque.getLast() != start){
+                Cell currentCell = deque.getLast();
                 int[] currentCellCoordinates = getCellCoordinates(currentCell);
                 int currentCellX = currentCellCoordinates[0];
                 int currentCellY = currentCellCoordinates[1];
