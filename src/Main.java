@@ -10,15 +10,15 @@ public class Main {
                 }
             }
         }
+
+
         Labyrinth labyrinth = new Labyrinth(Labyrinth9X9);
         labyrinth.setStart(1,1);
         labyrinth.setFinish(7,7);
-        labyrinth.getCell(3,3).doCellFull();
-        labyrinth.getCell(5,5).doCellFull();
-        labyrinth.getCell(6,7).doCellFull();
-        labyrinth.getCell(6,6).doCellFull();
-        labyrinth.getShortestWay();
-
+        labyrinth.getCell(3,1).doCellFull();
+        labyrinth.getCell(1,3).doCellFull();
+        labyrinth.SpawnEntryAndExit(2,2,6,6);
+        labyrinth.getShortestWayTest();
         printColor(labyrinth.getLabyrinth());
         System.out.println("Hello world!");
         printThis(labyrinth.getLabyrinth());
@@ -32,7 +32,7 @@ public class Main {
                     System.out.println();
                 } else
                     if (laburinth[i][j].getPosition() == -1){
-                    System.out.print(laburinth[i][j].getPosition());}
+                    System.out.print(laburinth[i][j].getPosition()+" ");}
                     else {
                         System.out.print(" "+laburinth[i][j].getPosition()+" ");
                     }

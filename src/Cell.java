@@ -1,9 +1,12 @@
+import java.util.Deque;
+
 public class Cell {
 
     private int position = 0;
     private Type type;
     private Attendance attendance = Attendance.UNVISITED;
     private Paint color = Paint.NOTSHADED;
+    private Cell wayToTeleport;
 
     public Cell(int position,Type type){
     this.position = position;
@@ -47,6 +50,13 @@ public class Cell {
     public void doCellTeleport(){
         type = Type.TELEPORT;
     }
+    public void doCellTeleportEnter(){
+        type = Type.TeleportEnter;
+    }
+    public void doCellTeleportExit(){
+        type = Type.TeleportExit;
+        attendance = Attendance.VISITED;
+    }
 
     public Attendance getAttendance(){
         return attendance;
@@ -57,8 +67,14 @@ public class Cell {
     public void makeUnvisited(){
         attendance = Attendance.UNVISITED;
     }
+    public Cell getWaysToTeleports(){
+        return wayToTeleport;
+    }
+    public void setWayToTeleport(Cell cell){
+        wayToTeleport = cell;
+    }
     public static enum Type{
-       START,FINISH, EMPTY, FULL, TELEPORT, Teleport1, Teleport2
+       START,FINISH, EMPTY, FULL, TELEPORT, TeleportEnter, TeleportExit
     }
     public static enum Attendance{
         VISITED, UNVISITED

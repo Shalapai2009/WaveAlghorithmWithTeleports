@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bbce95c-db33-4b74-8066-88961e3aef19" name="Changes" comment="asd">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Labyrinth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Labyrinth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711656227965</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="asd">
+      <created>1711656594500</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711656594500</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,7 +114,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>21</line>
+          <line>22</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

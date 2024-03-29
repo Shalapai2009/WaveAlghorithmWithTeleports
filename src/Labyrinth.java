@@ -11,10 +11,14 @@ public class Labyrinth {
     public Labyrinth(Cell[][] labyrinth){
         this.labyrinth = labyrinth;
     }
-    public void spawn2Teleports(int positionX1,int positionY1,int positionX2, int positionY2){
-        labyrinth[positionX1][positionY1].doCellTeleport();
-        labyrinth[positionX2][positionY2].doCellTeleport();
-    }
+   public void SpawnEntryAndExit(int x1,int y1,int x2,int y2){
+        Cell enterCell = getCell(x1,y1);
+        Cell exitCell = (getCell(x2,y2));
+        enterCell.doCellTeleportEnter();
+        exitCell.doCellTeleportExit();
+        enterCell.setWayToTeleport(exitCell);
+        exitCell.setWayToTeleport(enterCell);
+   }
     public Cell getCell(int x,int y){
         try {
             return labyrinth[x][y];
@@ -82,7 +86,7 @@ public class Labyrinth {
     public Cell[][] getLabyrinth(){
         return labyrinth;
     }
-    private void waveAlgorithm(){
+    /*private void waveAlgorithm(){
         Deque<Cell> deque = new ArrayDeque<>();
         deque.add(start);
         while (deque.size()>0){
@@ -116,8 +120,8 @@ public class Labyrinth {
             }
        }
 
-    }
-    public Deque<Cell> getShortestWay(){
+    }*/
+    /*public Deque<Cell> getShortestWay(){
         waveAlgorithm();
         if (finish.getPosition()<=0){
             return null;
@@ -150,6 +154,73 @@ public class Labyrinth {
                 else if (DownCell != null && (DownCell.getPosition() == currentCell.getPosition()-1)){
                     deque.add(DownCell);
                     DownCell.doShade();
+                }
+            }
+            return deque;
+
+        }
+
+    }*/
+    private void waveAlgorithmTest(){
+        Deque<Cell> deque = new ArrayDeque<>();
+        deque.add(start);
+        while (deque.size()>0){
+            Cell currentCell = deque.pop();
+            int[] currentCellCoordinates = getCellCoordinates(currentCell);
+            int currentCellX = currentCellCoordinates[0];
+            int currentCellY = currentCellCoordinates[1];
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    if ((i!=0 & j==0) | (i==0 & j!=0)){
+                       Cell mineCell = getCell(currentCellX+i,currentCellY+j);
+                        if (mineCell != null  && (mineCell.getType() != Cell.Type.FULL & mineCell.getAttendance() != Cell.Attendance.VISITED)){
+                            mineCell.setPosition(currentCell.getPosition()+1);
+                            mineCell.makeVisited();
+                            if (mineCell.getType() != Cell.Type.TeleportEnter){
+                            deque.add(mineCell);}
+                            else {
+                                mineCell.getWaysToTeleports().setPosition(currentCell.getPosition()+1);
+                                deque.add(mineCell.getWaysToTeleports());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    public Deque<Cell> getShortestWayTest(){
+        waveAlgorithmTest();
+        if (finish.getPosition()<=0){
+            return null;
+        }
+        else {
+            Deque<Cell> deque = new ArrayDeque<>();
+            deque.add(finish);
+            finish.doShade();
+            while (deque.getLast() != start){
+                Cell currentCell = deque.getLast();
+                int[] currentCellCoordinates = getCellCoordinates(currentCell);
+                int currentCellX = currentCellCoordinates[0];
+                int currentCellY = currentCellCoordinates[1];
+                outerloop:
+                for (int i = -1; i < 2; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        if ((i!=0 & j==0) | (i==0 & j!=0)){
+                            Cell mineCell = getCell(currentCellX+i,currentCellY+j);
+                            if (mineCell != null && (mineCell.getPosition() == currentCell.getPosition()-1 & mineCell.getAttendance() == Cell.Attendance.VISITED)){
+                                mineCell.doShade();
+                                if (mineCell.getType() != Cell.Type.TeleportExit){
+                                deque.add(mineCell);
+                                }
+                                if (mineCell.getType() == Cell.Type.TeleportExit){
+                                    mineCell.getWaysToTeleports().doShade();
+                                    deque.add(mineCell.getWaysToTeleports());
+                                }
+                                break outerloop;
+                            }
+                        }
+                    }
                 }
             }
             return deque;
