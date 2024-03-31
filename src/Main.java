@@ -1,6 +1,16 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class Main {
-    public static void main(String[] args) {
-        Cell[][] Labyrinth9X9 = new Cell[9][9];
+    public static void main(String[] args) throws IOException {
+        BufferRead br1 =  new BufferRead(new BufferedReader(new FileReader("field.txt")));
+
+
+        /*Cell[][] Labyrinth9X9 = new Cell[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if ((i  == 0 | j==0) | (i == 8 | j ==8)) {
@@ -9,19 +19,22 @@ public class Main {
                     Labyrinth9X9[i][j] = new Cell(0, Cell.Type.EMPTY);
                 }
             }
-        }
+        }*/
 
+        Labyrinth labyrinth = br1.doMagic();
 
-        Labyrinth labyrinth = new Labyrinth(Labyrinth9X9);
-        labyrinth.setStart(1,1);
+        System.out.println(labyrinth.getShortestWayTest());
+        labyrinth.printThis();
+        labyrinth.printColor();
+        /*labyrinth.setStart(1,1);
         labyrinth.setFinish(7,7);
         labyrinth.getCell(3,1).doCellFull();
         labyrinth.getCell(1,3).doCellFull();
-        labyrinth.SpawnEntryAndExit(2,2,6,6);
+        //labyrinth.SpawnEntryAndExit(2,2,6,6);
         labyrinth.getShortestWayTest();
         printColor(labyrinth.getLabyrinth());
         System.out.println("Hello world!");
-        printThis(labyrinth.getLabyrinth());
+        printThis(labyrinth.getLabyrinth());*/
     }
 
     public static void printThis(Cell[][] laburinth){
@@ -55,4 +68,6 @@ public class Main {
             }
         }
     }
+
+
 }

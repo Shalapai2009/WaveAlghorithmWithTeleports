@@ -27,6 +27,9 @@ public class Labyrinth {
         }
 
     }
+    public Cell setCell(int x, int y){
+       return labyrinth[x][y] = new Cell(0, Cell.Type.EMPTY);
+    }
     public int[] getCellCoordinates(Cell cell){
         int[] cellCoordinates = new int[2];
         for (int i = 0; i < labyrinth.length; i++) {
@@ -45,6 +48,7 @@ public class Labyrinth {
         labyrinth[x][y].doStart();
         start = labyrinth[x][y];
     }
+
 
     public Cell getStart(){
         return start;
@@ -212,8 +216,7 @@ public class Labyrinth {
                                 mineCell.doShade();
                                 if (mineCell.getType() != Cell.Type.TeleportExit){
                                 deque.add(mineCell);
-                                }
-                                if (mineCell.getType() == Cell.Type.TeleportExit){
+                                } else{
                                     mineCell.getWaysToTeleports().doShade();
                                     deque.add(mineCell.getWaysToTeleports());
                                 }
@@ -228,6 +231,36 @@ public class Labyrinth {
         }
 
     }
-
+    public void printThis(){
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if (j == labyrinth[i].length-1){
+                    System.out.print(labyrinth[i][j].getPosition()+" ");
+                    System.out.println();
+                } else
+                if (labyrinth[i][j].getPosition() == -1){
+                    System.out.print(labyrinth[i][j].getPosition()+" ");}
+                else {
+                    System.out.print(" "+labyrinth[i][j].getPosition()+" ");
+                }
+            }
+        }
+    }
+    public void printColor(){
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if (j == labyrinth[i].length-1){
+                    if  (labyrinth[j][i].getColor() == Cell.Paint.NOTSHADED){
+                        System.out.print("N"+" ");
+                    } else {System.out.print("S"+" ");}
+                    System.out.println();
+                } else{
+                    if  (labyrinth[j][i].getColor() == Cell.Paint.NOTSHADED){
+                        System.out.print("N"+" ");
+                    } else {System.out.print("S"+" ");}
+                }
+            }
+        }
+    }
 
 }

@@ -12,6 +12,7 @@ public class Cell {
     this.position = position;
     this.type = type;
     }
+
     public int getPosition(){
         return this.position;
     }
