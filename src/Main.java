@@ -22,10 +22,12 @@ public class Main {
         }*/
 
         Labyrinth labyrinth = br1.doMagic();
-
+        labyrinth.SpawnEntryAndExit(1,3,2,5);
         System.out.println(labyrinth.getShortestWayTest());
+
         labyrinth.printThis();
         labyrinth.printColor();
+
         /*labyrinth.setStart(1,1);
         labyrinth.setFinish(7,7);
         labyrinth.getCell(3,1).doCellFull();
